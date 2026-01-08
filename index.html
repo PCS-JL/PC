@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Control Procedure - Enhanced System</title>
+    <title>Project Control Procedure System</title>
     <style>
         * {
             margin: 0;
@@ -31,8 +31,271 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
             min-height: 100vh;
+        }
+        
+        /* ==================== LANDING PAGE ==================== */
+        #landingPage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        #landingPage.hidden {
+            display: none;
+        }
+        .landing-container {
+            background: white;
+            border-radius: 30px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .landing-header {
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e3c72 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .landing-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .landing-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 0;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .landing-header .icon {
+            font-size: 1.2em;
+        }
+        .landing-content {
+            padding: 50px 40px;
+        }
+        .welcome-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .welcome-section h2 {
+            color: #1e3c72;
+            font-size: 2em;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .features-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            border-left: 5px solid #667eea;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .features-title {
+            color: #1e3c72;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 10px 0;
+            color: #333;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+        .feature-item .check {
+            color: #43e97b;
+            font-size: 1.3em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .feature-item strong {
+            color: #667eea;
+        }
+        .feature-item .content-wrapper {
+            flex: 1;
+        }
+        .groups-detail {
+            display: block;
+            color: #555;
+            font-size: 0.92em;
+            margin-top: 8px;
+            line-height: 1.8;
+            padding-left: 0;
+        }
+        .groups-detail .group-line {
+            display: flex;
+            align-items: baseline;
+            margin: 3px 0;
+        }
+        .groups-detail .bullet {
+            color: #667eea;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+        .groups-detail .group-name {
+            flex: 1;
+        }
+        .groups-detail .group-count {
+            color: #999;
+            font-size: 0.95em;
+            margin-left: 5px;
+        }
+        .description {
+            text-align: center;
+            color: #666;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            padding: 0 20px;
+        }
+        .buttons-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+        .landing-btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-procedure {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .btn-procedure:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+        .btn-form {
+            background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%);
+            box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
+        }
+        .btn-form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6);
+        }
+        .access-box {
+            background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 100%);
+            border-left: 4px solid #ff9800;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .access-title {
+            color: #e65100;
+            font-size: 1em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .access-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px 0;
+            color: #333;
+            font-size: 0.95em;
+        }
+        .access-item .icon {
+            font-size: 1.1em;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .enter-system-btn {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            display: block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            border: none;
+            border-radius: 35px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(67, 233, 123, 0.4);
+        }
+        .enter-system-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(67, 233, 123, 0.6);
+        }
+        .enter-system-btn .icon {
+            margin-left: 10px;
+        }
+        .landing-footer {
+            background: #f5f7fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        /* ==================== MAIN SYSTEM ==================== */
+        #mainSystem {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        #mainSystem.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         .container {
             max-width: 1400px;
@@ -60,10 +323,6 @@
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
             animation: rotate 20s linear infinite;
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
@@ -76,6 +335,24 @@
             opacity: 0.9;
             position: relative;
             z-index: 1;
+        }
+        .back-to-landing {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .back-to-landing:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-3px);
         }
         
         /* Control Panel */
@@ -652,6 +929,12 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            .landing-header h1 {
+                font-size: 1.8em;
+            }
+            .landing-content {
+                padding: 30px 20px;
+            }
             .header h1 {
                 font-size: 1.8em;
             }
@@ -684,6 +967,9 @@
             .link-btn-group {
                 flex-direction: column;
             }
+            .buttons-group {
+                flex-direction: column;
+            }
         }
         
         /* Search No Results */
@@ -703,105 +989,228 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>📊 Project Control Procedure System</h1>
-            <p>ระบบการจัดการเอกสารและขั้นตอนการควบคุมโครงการแบบครบวงจร</p>
+    <!-- ==================== LANDING PAGE ==================== -->
+    <div id="landingPage">
+        <div class="landing-container">
+            <div class="landing-header">
+                <h1>
+                    <span class="icon">📊</span>
+                    <span>Project Control Procedure System</span>
+                </h1>
+            </div>
+            
+            <div class="landing-content">
+                <div class="welcome-section">
+                    <h2>🎉 Welcome to Project Control Procedure System</h2>
+                    
+                    <div class="features-box">
+                        <div class="features-title">📋 ภาพรวมของระบบ</div>
+                        
+                        <div class="feature-item">
+                            <span class="check">✅</span>
+                            <div class="content-wrapper">
+                                <strong>26 Procedures</strong> แบ่งเป็น 6 กลุ่มหลัก
+                                <div class="groups-detail">
+                                    <div class="group-line">
+                                        <span class="bullet">•</span>
+                                        <span class="group-name">Project Control & Governance</span>
+                                        <span class="group-count">(3)</span>
+                                    </div>
+                                    <div class="group-line">
+                                        <span class="bullet">•</span>
+                                        <span class="group-name">Planning, Scheduling & Progress Control</span>
+                                        <span class="group-count">(6)</span>
+                                    </div>
+                                    <div class="group-line">
+                                        <span class="bullet">•</span>
+                                        <span class="group-name">Cost Control & Change Management</span>
+                                        <span class="group-count">(5)</span>
+                                    </div>
+                                    <div class="group-line">
+                                        <span class="bullet">•</span>
+                                        <span class="group-name">Document Control & Information Management</span>
+                                        <span class="group-count">(6)</span>
+                                    </div>
+                                    <div class="group-line">
+                                        <span class="bullet">•</span>
+                                        <span class="group-name">Vendor, Subcontract & Confidentiality Control</span>
+                                        <span class="group-count">(4)</span>
+                                    </div>
+                                    <div class="group-line">
+                                        <span class="bullet">•</span>
+                                        <span class="group-name">Resource & Technical Control</span>
+                                        <span class="group-count">(2)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <span class="check">✅</span>
+                            <div class="content-wrapper">
+                                <strong>15 Forms</strong> สนับสนุนการทำงาน
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <span class="check">✅</span>
+                            <div class="content-wrapper">
+                                เชื่อมโยงกับ <strong>SharePoint</strong> สำหรับเอกสารอ้างอิง
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="description">
+                    ระบบการจัดการเอกสารและขั้นตอนการควบคุมโครงการ<br>
+                    ตั้งแต่การวางแผน การบริหาร การประสานงานไปจนถึงการส่งมอบงานของงานโครงการ
+                </div>
+                
+                <div class="buttons-group">
+                    <a href="https://scgo365.sharepoint.com/:f:/r/sites/ECProjectControl/Procedures/02.Procedure%20(P)?csf=1&web=1&e=1dG6a6" target="_blank" class="landing-btn btn-procedure">
+                        <span>📁</span>
+                        <span>Procedure Folder</span>
+                    </a>
+                    <a href="https://scgo365.sharepoint.com/:f:/r/sites/ECProjectControl/Procedures/Obsolete/04.Form%20(F)?csf=1&web=1&e=61n4jF" target="_blank" class="landing-btn btn-form">
+                        <span>📋</span>
+                        <span>Form Folder</span>
+                    </a>
+                </div>
+                
+                <div class="access-box">
+                    <div class="access-title">🔒 การเข้าถึง</div>
+                    <div class="access-item">
+                        <span class="icon">⚠️</span>
+                        <span>เอกสารทั้งหมดต้องมีสิทธิ์เข้าถึง SharePoint</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="icon">🎯</span>
+                        <span>กรุณา Login ด้วย Microsoft 365 Account ของบริษัท</span>
+                    </div>
+                </div>
+                
+                <button class="enter-system-btn" onclick="enterSystem()">
+                    Get Started
+                    <span class="icon">→</span>
+                </button>
+            </div>
+            
+            <div class="landing-footer">
+                <p>Project Control Procedure System</p>
+                <p>Powered by GitHub Pages | © 2026</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ==================== MAIN SYSTEM ==================== -->
+    <div id="mainSystem">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <button class="back-to-landing" onclick="backToLanding()">← กลับหน้าหลัก</button>
+                <h1>📊 Project Control Procedure System</h1>
+                <p>ระบบการจัดการเอกสารและขั้นตอนการควบคุมโครงการแบบครบวงจร</p>
+            </div>
+            
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="ค้นหา Procedure ด้วยเลข 4 หลัก เช่น 0001, 0015" maxlength="4">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="toggleGroupFilter('group1')">Group 1</button>
+                    <button class="filter-btn" onclick="toggleGroupFilter('group2')">Group 2</button>
+                    <button class="filter-btn" onclick="toggleGroupFilter('group3')">Group 3</button>
+                    <button class="filter-btn" onclick="toggleGroupFilter('group4')">Group 4</button>
+                    <button class="filter-btn" onclick="toggleGroupFilter('group5')">Group 5</button>
+                    <button class="filter-btn" onclick="toggleGroupFilter('group6')">Group 6</button>
+                </div>
+                <button class="export-btn" id="exportBtn" onclick="exportData()" disabled>📥 Export List Data</button>
+                <div class="selected-groups empty" id="selectedGroups"></div>
+            </div>
+            
+            <div class="content">
+                <!-- Stats Dashboard -->
+                <div class="stats-dashboard">
+                    <div class="stat-card" onclick="scrollToGroups()">
+                        <div class="number">6</div>
+                        <div class="label">Groups</div>
+                        <div class="sublabel">กลุ่มเอกสารหลัก</div>
+                    </div>
+                    <div class="stat-card style-2" onclick="showAllProcedures()">
+                        <div class="number">26</div>
+                        <div class="label">Procedures</div>
+                        <div class="sublabel">ขั้นตอนการทำงาน</div>
+                    </div>
+                    <div class="stat-card style-3" onclick="showTopForms()">
+                        <div class="number">15</div>
+                        <div class="label">Forms</div>
+                        <div class="sublabel">แบบฟอร์มสนับสนุน</div>
+                    </div>
+                </div>
+                
+                <!-- Document Map -->
+                <div class="document-map">
+                    <h2 class="map-title">System Overview</h2>
+                    <div class="map-flow">
+                        <div class="flow-box">6 กลุ่มเอกสาร</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">26 ขั้นตอนการทำงาน</div>
+                        <div class="flow-arrow">→</div>
+                        <div class="flow-box">15 แบบฟอร์ม</div>
+                    </div>
+                </div>
+                
+                <!-- Groups Overview -->
+                <h2 class="section-title" id="groups-section">📑 Document Groups</h2>
+                <div class="groups-section">
+                    <div class="group-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" onclick="selectSingleGroup('group1')">
+                        <h3>1. Project Control & Governance</h3>
+                        <div class="count">3 Procedures</div>
+                        <p>ครอบคลุมการควบคุมโครงการโดยรวม การประสานงาน และการสื่อสาร</p>
+                    </div>
+                    <div class="group-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" onclick="selectSingleGroup('group2')">
+                        <h3>2. Planning, Scheduling & Progress</h3>
+                        <div class="count">6 Procedures</div>
+                        <p>การวางแผน กำหนดตาราง และควบคุมความคืบหน้า</p>
+                    </div>
+                    <div class="group-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="selectSingleGroup('group3')">
+                        <h3>3. Cost Control & Change</h3>
+                        <div class="count">5 Procedures</div>
+                        <p>การควบคุมต้นทุนและการจัดการการเปลี่ยนแปลง</p>
+                    </div>
+                    <div class="group-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);" onclick="selectSingleGroup('group4')">
+                        <h3>4. Document Control</h3>
+                        <div class="count">6 Procedures</div>
+                        <p>การจัดการเอกสารและข้อมูล</p>
+                    </div>
+                    <div class="group-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);" onclick="selectSingleGroup('group5')">
+                        <h3>5. Vendor & Subcontract</h3>
+                        <div class="count">4 Procedures</div>
+                        <p>การจัดการผู้รับเหมาและความลับ</p>
+                    </div>
+                    <div class="group-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);" onclick="selectSingleGroup('group6')">
+                        <h3>6. Resource & Technical</h3>
+                        <div class="count">2 Procedures</div>
+                        <p>การจัดการทรัพยากรและเทคนิค</p>
+                    </div>
+                </div>
+                
+                <!-- All Procedures -->
+                <h2 class="section-title" id="procedures-section">📋 All Procedures</h2>
+                <div class="procedures-grid" id="proceduresGrid"></div>
+                <div class="no-results" id="noResults" style="display: none;">
+                    <div class="icon">🔍</div>
+                    <h3>ไม่พบ Procedure ที่ค้นหา</h3>
+                    <p>กรุณาตรวจสอบเลข 4 หลักของ Procedure Code</p>
+                </div>
+            </div>
         </div>
         
-        <!-- Control Panel -->
-        <div class="control-panel">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="ค้นหา Procedure ด้วยเลข 4 หลัก เช่น 0001, 0015" maxlength="4">
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn" onclick="toggleGroupFilter('group1')">Group 1</button>
-                <button class="filter-btn" onclick="toggleGroupFilter('group2')">Group 2</button>
-                <button class="filter-btn" onclick="toggleGroupFilter('group3')">Group 3</button>
-                <button class="filter-btn" onclick="toggleGroupFilter('group4')">Group 4</button>
-                <button class="filter-btn" onclick="toggleGroupFilter('group5')">Group 5</button>
-                <button class="filter-btn" onclick="toggleGroupFilter('group6')">Group 6</button>
-            </div>
-            <button class="export-btn" id="exportBtn" onclick="exportData()" disabled>📥 Export List Data</button>
-            <div class="selected-groups empty" id="selectedGroups"></div>
-        </div>
-        
-        <div class="content">
-            <!-- Stats Dashboard -->
-            <div class="stats-dashboard">
-                <div class="stat-card" onclick="scrollToGroups()">
-                    <div class="number">6</div>
-                    <div class="label">Groups</div>
-                    <div class="sublabel">กลุ่มเอกสารหลัก</div>
-                </div>
-                <div class="stat-card style-2" onclick="showAllProcedures()">
-                    <div class="number">26</div>
-                    <div class="label">Procedures</div>
-                    <div class="sublabel">ขั้นตอนการทำงาน</div>
-                </div>
-                <div class="stat-card style-3" onclick="showTopForms()">
-                    <div class="number">15</div>
-                    <div class="label">Forms</div>
-                    <div class="sublabel">แบบฟอร์มสนับสนุน</div>
-                </div>
-            </div>
-            
-            <!-- Document Map -->
-            <div class="document-map">
-                <h2 class="map-title">System Overview</h2>
-                <div class="map-flow">
-                    <div class="flow-box">6 กลุ่มเอกสาร</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-box">26 ขั้นตอนการทำงาน</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-box">15 แบบฟอร์ม</div>
-                </div>
-            </div>
-            
-            <!-- Groups Overview -->
-            <h2 class="section-title" id="groups-section">📑 Document Groups</h2>
-            <div class="groups-section">
-                <div class="group-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);" onclick="selectSingleGroup('group1')">
-                    <h3>1. Project Control & Governance</h3>
-                    <div class="count">3 Procedures</div>
-                    <p>ครอบคลุมการควบคุมโครงการโดยรวม การประสานงาน และการสื่อสาร</p>
-                </div>
-                <div class="group-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);" onclick="selectSingleGroup('group2')">
-                    <h3>2. Planning, Scheduling & Progress</h3>
-                    <div class="count">6 Procedures</div>
-                    <p>การวางแผน กำหนดตาราง และควบคุมความคืบหน้า</p>
-                </div>
-                <div class="group-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);" onclick="selectSingleGroup('group3')">
-                    <h3>3. Cost Control & Change</h3>
-                    <div class="count">5 Procedures</div>
-                    <p>การควบคุมต้นทุนและการจัดการการเปลี่ยนแปลง</p>
-                </div>
-                <div class="group-card" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);" onclick="selectSingleGroup('group4')">
-                    <h3>4. Document Control</h3>
-                    <div class="count">6 Procedures</div>
-                    <p>การจัดการเอกสารและข้อมูล</p>
-                </div>
-                <div class="group-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);" onclick="selectSingleGroup('group5')">
-                    <h3>5. Vendor & Subcontract</h3>
-                    <div class="count">4 Procedures</div>
-                    <p>การจัดการผู้รับเหมาและความลับ</p>
-                </div>
-                <div class="group-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);" onclick="selectSingleGroup('group6')">
-                    <h3>6. Resource & Technical</h3>
-                    <div class="count">2 Procedures</div>
-                    <p>การจัดการทรัพยากรและเทคนิค</p>
-                </div>
-            </div>
-            
-            <!-- All Procedures -->
-            <h2 class="section-title" id="procedures-section">📋 All Procedures</h2>
-            <div class="procedures-grid" id="proceduresGrid"></div>
-            <div class="no-results" id="noResults" style="display: none;">
-                <div class="icon">🔍</div>
-                <h3>ไม่พบ Procedure ที่ค้นหา</h3>
-                <p>กรุณาตรวจสอบเลข 4 หลักของ Procedure Code</p>
-            </div>
+        <!-- Floating Buttons -->
+        <div class="floating-btns">
+            <button class="float-btn secondary" onclick="scrollToGroups()" title="ไปที่ Groups">📑</button>
+            <button class="float-btn primary" onclick="scrollToTop()" title="กลับขึ้นด้านบน">⬆️</button>
         </div>
     </div>
     
@@ -817,12 +1226,6 @@
                 <!-- Dynamic content will be inserted here -->
             </div>
         </div>
-    </div>
-    
-    <!-- Floating Buttons -->
-    <div class="floating-btns">
-        <button class="float-btn secondary" onclick="scrollToGroups()" title="ไปที่ Groups">📑</button>
-        <button class="float-btn primary" onclick="scrollToTop()" title="กลับขึ้นด้านบน">⬆️</button>
     </div>
     
     <script>
@@ -1094,12 +1497,21 @@
         // Selected groups state
         let selectedGroups = [];
         
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
+        // Page Navigation
+        function enterSystem() {
+            document.getElementById('landingPage').classList.add('hidden');
+            document.getElementById('mainSystem').classList.add('active');
             renderProcedures();
             setupSearch();
             updateExportButton();
-        });
+        }
+        
+        function backToLanding() {
+            document.getElementById('mainSystem').classList.remove('active');
+            document.getElementById('landingPage').classList.remove('hidden');
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         
         // Render Procedures
         function renderProcedures() {
